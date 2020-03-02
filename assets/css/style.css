@@ -1,2 +1,9 @@
-body{background-color:red}
+@font-face {
+  font-family: "Bellota";
+  src: url("/assets/font/Bellota-Regular.otf") format("truetype");
+}
+
+body {
+  font-family: "Bellota";
+}
 /*# sourceMappingURL=style.css.map */
