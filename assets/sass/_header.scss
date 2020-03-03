@@ -1,0 +1,29 @@
+header {
+  a,
+  h1,
+  p {
+    font-family: "Bellota" !important;
+  }
+
+  .navbar {
+    img {
+      width: 70px;
+      height: auto;
+    }
+  }
+  .jumbotron {
+    h1,
+    p {
+      color: #15c5bd;
+    }
+
+    p{
+      padding-bottom: 2em;
+    }
+    background-image: url(../img/hero.jpg);
+    background-repeat: no-repeat;
+    overflow: hidden;
+    background-size: cover;
+    background-position: right;
+  }
+}

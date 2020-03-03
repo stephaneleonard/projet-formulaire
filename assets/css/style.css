@@ -1,9 +1,2 @@
-@font-face {
-  font-family: "Bellota";
-  src: url("/assets/font/Bellota-Regular.otf") format("truetype");
-}
-
-body {
-  font-family: "Bellota";
-}
+header a,header h1,header p{font-family:"Bellota" !important}header .navbar img{width:70px;height:auto}header .jumbotron{background-image:url(../img/hero.jpg);background-repeat:no-repeat;overflow:hidden;background-size:cover;background-position:right}header .jumbotron h1,header .jumbotron p{color:#15c5bd}header .jumbotron p{padding-bottom:2em}@font-face{font-family:"Bellota";src:url("/assets/font/Bellota-Regular.otf") format("truetype")}body{font-family:"Bellota"}
 /*# sourceMappingURL=style.css.map */
