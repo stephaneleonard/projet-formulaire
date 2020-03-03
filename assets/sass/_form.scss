@@ -1,0 +1,15 @@
+$back-color:#303030;
+$colorText:#15C5BD;
+
+
+form{
+    background-color:$back-color;
+    color:$colorText;
+    border-radius: 35px;
+    .btn{
+
+        background-color: $back-color;
+        color: $colorText;
+        border-color: $colorText;
+    }
+}
