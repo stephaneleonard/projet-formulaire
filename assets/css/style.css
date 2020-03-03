@@ -56,6 +56,10 @@ form .btn {
   border-color: #15C5BD;
 }
 
+form hr {
+  border-color: white;
+}
+
 @font-face {
   font-family: "Bellota";
   src: url("/assets/font/Bellota-Regular.otf") format("truetype");

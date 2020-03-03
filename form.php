@@ -1,13 +1,23 @@
 <main>
 <form class="needs-validation m-5 p-5" method="post" action="">
+<div class="row">
+    <div class="col-12 text-left">
+         <h2>CONTACT US <hr></h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 text-right">
+          <h4>All problems can be fixed <hr></h4>
+    </div>
+</div>
   <div class="form-row">
     <div class="col-md-4 mb-3">
       <label for="validationTooltip01">First name</label>
-      <input type="text" class="form-control" id="validationTooltip01" name="firstname" placeholder="First name">
+      <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First name">
     </div>
     <div class="col-md-4 mb-3">
       <label for="validationTooltip02">Last name</label>
-      <input type="text" class="form-control" id="validationTooltip02" placeholder="Last name">
+      <input type="text" class="form-control" id="lastname" placeholder="Last name">
     </div>
     <div class="col-md-4 mb-3">
       <label for="validationTooltipEmail">email</label>
@@ -15,14 +25,14 @@
         <div class="input-group-prepend">
           <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
         </div>
-        <input type="text" class="form-control" id="validationTooltipUsername" placeholder="email@gmail.com" aria-describedby="validationTooltipUsernamePrepend">
+        <input type="text" class="form-control" id="email" placeholder="email@gmail.com" aria-describedby="validationTooltipUsernamePrepend">
       </div>
     </div>
   </div>
   <div class="form-row">
     <div class="col-md-6 mb-3">
       <label for="validationTooltip03">Country</label>
-      <input type="text" class="form-control" id="validationTooltip03" placeholder="Country">
+      <input type="text" class="form-control" id="country" placeholder="Country">
     </div>
     <div class="col-md-3 mb-3">
     <label> Sex</label><br>
@@ -60,6 +70,8 @@
           <textarea class="form-control" name="description" id="description" rows="10" placeholder="describe the problem"></textarea>
       </div>
   </div>
-  <button class="btn btn-primary mt-3" type="submit" name="submit">Submit form</button>
+  <button id="run" class="btn btn-primary mt-3" type="submit" name="submit">Submit form</button>
 </form>
+
+<script src="./assets/js/script.js"></script>
 </main>
