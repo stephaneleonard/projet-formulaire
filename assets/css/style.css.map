@@ -1,8 +1,9 @@
 {
     "version": 3,
-    "mappings": "AAAA,UAAU;EACN,WAAW,EAAE,SAAS;EACtB,GAAG,EAAE,uCAAuC,CAAC,kBAAkB;;;AAEnE,AAAA,IAAI,CAAA;EACA,WAAW,EAAE,SAAS;CACzB",
+    "mappings": "ACIA,AAAA,IAAI,CAAA;EACA,gBAAgB,EALR,OAAO;EAMf,KAAK,EALE,OAAO;EAMd,aAAa,EAAE,IAAI;CAOtB;;AAVD,AAII,IAJA,CAIA,IAAI,CAAA;EAEA,gBAAgB,EAVZ,OAAO;EAWX,KAAK,EAVF,OAAO;EAWV,YAAY,EAXT,OAAO;CAYb;;ADZL,UAAU;EACN,WAAW,EAAE,SAAS;EACtB,GAAG,EAAE,uCAAuC,CAAC,kBAAkB;;;AAEnE,AAAA,IAAI,CAAA;EACA,WAAW,EAAE,SAAS;CACzB",
     "sources": [
-        "../sass/style.scss"
+        "../sass/style.scss",
+        "../sass/_form.scss"
     ],
     "names": [],
     "file": "style.css"

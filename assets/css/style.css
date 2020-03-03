@@ -1,3 +1,15 @@
+form {
+  background-color: #303030;
+  color: #15C5BD;
+  border-radius: 35px;
+}
+
+form .btn {
+  background-color: #303030;
+  color: #15C5BD;
+  border-color: #15C5BD;
+}
+
 @font-face {
   font-family: "Bellota";
   src: url("/assets/font/Bellota-Regular.otf") format("truetype");
