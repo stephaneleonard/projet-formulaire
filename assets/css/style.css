@@ -1,2 +1,75 @@
-header{margin-bottom:8em}header a,header h1,header p{font-family:"Bellota" !important}header .navbar img{width:70px;height:auto}header .jumbotron{background-image:url(../img/hero.jpg);background-repeat:no-repeat;overflow:hidden;background-size:cover;background-position:right}header .jumbotron h1,header .jumbotron p{color:#15c5bd}header .jumbotron p{padding-bottom:2em}#featured,#gaming,#cluster{font-family:"Bellota" !important;margin-bottom:5em}#featured h2,#gaming h2,#cluster h2{margin-bottom:2em}#featured .btn,#gaming .btn,#cluster .btn{background-color:#15c5bd;border-color:#15c5bd}form{background-color:#303030;color:#15C5BD;border-radius:35px}form .btn{background-color:#303030;color:#15C5BD;border-color:#15C5BD}form hr{border-color:white}@font-face{font-family:"Bellota";src:url("/assets/font/Bellota-Regular.otf") format("truetype")}body{font-family:"Bellota"}
+header {
+  margin-bottom: 8em;
+}
+
+header a,
+header h1,
+header p {
+  font-family: "Bellota" !important;
+}
+
+header .navbar img {
+  width: 70px;
+  height: auto;
+}
+
+header .jumbotron {
+  background-image: url(../img/hero.jpg);
+  background-repeat: no-repeat;
+  overflow: hidden;
+  background-size: cover;
+  background-position: right;
+}
+
+header .jumbotron h1,
+header .jumbotron p {
+  color: #15c5bd;
+}
+
+header .jumbotron p {
+  padding-bottom: 2em;
+}
+
+#featured, #gaming, #cluster {
+  font-family: "Bellota" !important;
+  margin-bottom: 5em;
+}
+
+#featured h2, #gaming h2, #cluster h2 {
+  margin-bottom: 2em;
+}
+
+#featured .btn, #gaming .btn, #cluster .btn {
+  background-color: #15c5bd;
+  border-color: #15c5bd;
+}
+
+form {
+  background-color: #303030;
+  color: #15C5BD;
+  border-radius: 35px;
+}
+
+form .btn {
+  background-color: #303030;
+  color: #15C5BD;
+  border-color: #15C5BD;
+}
+
+form hr {
+  border-color: white;
+}
+
+form .divSexType {
+  margin-left: 17%;
+}
+
+@font-face {
+  font-family: "Bellota";
+  src: url("/assets/font/Bellota-Regular.otf") format("truetype");
+}
+
+body {
+  font-family: "Bellota";
+}
 /*# sourceMappingURL=style.css.map */

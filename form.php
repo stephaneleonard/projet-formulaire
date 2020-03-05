@@ -1,21 +1,24 @@
 <?php
+// table of all the errors message
+$errors = [
+  "firstname" => '',
+  "lastname" => '',
+  "email" => '',
+  "country" => '',
+  "description" => '',
+  "sex" =>''
+];
+$mailform = '';
 if (isset($_POST["submit"])) {
 
-    // table of all the errors message
-    $errors = [
-        "firstname" => '',
-        "lastname" => '',
-        "email" => '',
-        "country" => '',
-        "description" => ''
-    ];
     //table of all the sanitize method needed for each input
     $options = [
         "firstname" => FILTER_SANITIZE_STRING,
         "lastname" => FILTER_SANITIZE_STRING,
         "email" => FILTER_VALIDATE_EMAIL,
         "country" => FILTER_SANITIZE_STRING,
-        "description" => FILTER_SANITIZE_STRING
+        "description" => FILTER_SANITIZE_STRING,
+        "sex" => FILTER_SANITIZE_STRING,
     ];
     // sanatization
     $result = filter_input_array(INPUT_POST, $options);
@@ -24,13 +27,13 @@ if (isset($_POST["submit"])) {
     foreach ($result as $key => $value) {
         if (empty($value)) $errors[$key] = 'Input missing or incorrect';
     }
-
-    // echo "<pre>";
-    // print_r($result);
-    // echo "</pre>";
-    // echo "<pre>";
-    // print_r($errors);
-    // echo "</pre>";
+    if($result["sex"]!="M" && $result["sex"]!="F" ){
+      $errors[$key] = 'Input missing or incorrect';
+    }
+    foreach ($result as $key => $value){
+        $mailform .= "$value, ";
+    }
+    mail("pierrelorand1406@gmail.com","testMail",$mailform);
 }
 ?>
 <main>
@@ -52,7 +55,7 @@ if (isset($_POST["submit"])) {
                 <label for="firstname">First name</label>
                 <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First name" value=<?php echo isset($_POST['firstname']) ? $_POST['firstname'] : ''; ?>>
                 <?php
-                if ($errors['firstname'] != '') echo '<div class="alert-danger">' . $errors['firstname'] . '</div>'
+                  if ($errors['firstname'] != '') echo '<div class="alert-danger">' . $errors['firstname'] . '</div>'
                 ?>
             </div>
             <div class="col-md-4 mb-3">
@@ -83,18 +86,21 @@ if (isset($_POST["submit"])) {
                 if ($errors['country'] != '') echo '<div class="alert-danger">' . $errors['country'] . '</div>'
                 ?>
             </div>
-            <div class="col-md-3 mb-3 text-right">
-                <label class="mr-5"> Sex</label><br>
+            <div class="col-md-3 mb-3 divSexType">
+                <label> Sex</label><br>
                 <div class="form-check-inline">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="sex" checked>M
+                        <input type="radio" class="form-check-input" name="sex" value="M" checked>M
                     </label>
                 </div>
                 <div class="form-check-inline">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="sex">F
+                        <input type="radio" class="form-check-input" name="sex" value="F">F
                     </label>
                 </div>
+                <?php
+                if ($errors['sex'] != '') echo '<div class="alert-danger">' . $errors['sex'] . '</div>'
+                ?>
             </div>
         </div>
         <div class="form-row">
