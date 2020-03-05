@@ -65,35 +65,40 @@ if (isset($_POST["submit"])) {
         }
         //make sure that customer to not try to change the input
         if ($result["sex"] != "M" && $result["sex"] != "F") {
-            $errors[$key] = 'Input missing or incorrect';
+            $errors["sex"] = 'Input missing or incorrect';
         };
 
-        if ($result["subject"] != "Payement" && $result["subject"] != "Technical" && $result["subject"] != "Delivery" && $result["subject"] != "Autre") {
-            $errors[$key] = 'Input missing or incorrect';
+        if ($result["subject"] != "payement" && $result["subject"] != "technical" && $result["subject"] != "delivery" && $result["subject"] != "autre") {
+            $errors["subject"] = 'Input missing or incorrect';
         }
         if ($result["option"] != "option") {
-            $errors[$key] = 'Input missing or incorrect';
+            $errors["option"] = 'Input missing or incorrect';
         };
 
-        //sent the mail to webmaster
-        $mailTo = "pierrelorand1406@gmail.com";
-        $person = $result["firstname"] . " " . $result["lastname"];
-        $mailFrom = "Contact request from " . $person . "(" . $result["country"] . ")";
-        $body = "<h2> contact request </h2>
+
+        //sent the mail to webmaster only if no errors
+        if (!in_array('Input missing or incorrect', $errors)) {
+            $mailTo = "pierrelorand1406@gmail.com";
+            $person = $result["firstname"] . " " . $result["lastname"];
+            $mailFrom = "Contact request from " . $person . "(" . $result["country"] . ")";
+            $body = "<h2> contact request </h2>
             <h4>name</h4><p>" . $person . "</p>
             <h4>email</h4><p>" . $result["email"] . "</p>
             <h4>subject</h4><p>" . $result["subject"] . "</p>
             <h4>message</h4><p>" . $result["description"] . "</p>";
 
-        //email headers
-        $headers = "MIME-Version: 1.0:" . "\r\n";
-        $headers .= "Content-Type: text/html;charset=UTF-8" . "\r\n";
+            //email headers
+            $headers = "MIME-Version: 1.0:" . "\r\n";
+            $headers .= "Content-Type: text/html;charset=UTF-8" . "\r\n";
 
-        //additionnal headers
-        $headers .= "From: " . $person . "<" . $result["email"] . ">" . "\r\n";
+            //additionnal headers
+            $headers .= "From: " . $person . "<" . $result["email"] . ">" . "\r\n";
 
-        mail($mailTo, $mailFrom, $body, $headers);
-    }else {
+            mail($mailTo, $mailFrom, $body, $headers);
+        } else {
+            echo '<p>mail pas envoyé</p>';
+        }
+    } else {
         echo '<p>Coucou Odile</p>';
     }
 }
@@ -180,12 +185,12 @@ if (isset($_POST["submit"])) {
             ?>
             <div class="col-12 col-lg-6 col-sm-6">
                 <label for="option">option</label>
-                <select id="option">
-                    <option name='option' value="option" selected>Select option</option>
+                <select name='option' id="option">
+                    <option value="option" selected>Select option</option>
                 </select>
-                <!-- <?php
-                // if ($errors['option'] != '') echo '<div class="alert-danger">' . $errors['option'] . '</div>'
-                ?> -->
+                <?php
+                if ($errors['option'] != '') echo '<div class="alert-danger">' . $errors['option'] . '</div>'
+                ?>
             </div>
         </div>
         <div class="form-row">
