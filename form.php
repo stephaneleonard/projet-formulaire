@@ -6,7 +6,9 @@ $errors = [
     "email" => '',
     "country" => '',
     "description" => '',
-    "sex" => ''
+    "sex" => '',
+    "subject" =>'',
+    "option" => ''
 ];
 $result = array();
 $mailform = '';
@@ -32,6 +34,7 @@ if (isset($_POST["submit"])) {
         "description" => FILTER_SANITIZE_STRING,
         "sex" => FILTER_SANITIZE_STRING,
         "subject" => FILTER_SANITIZE_STRING,
+        "option" => FILTER_SANITIZE_STRING
     ];
     // sanatization
     $result = filter_input_array(INPUT_POST, $options);
@@ -48,6 +51,9 @@ if (isset($_POST["submit"])) {
     if($result["subject"]!="Payement" && $result["subject"]!="Technical" && $result["subject"]!="Delivery" && $result["subject"]!="Autre"){
         $errors[$key] = 'Input missing or incorrect';
     }
+    if($result["option"] !="option" ){
+        $errors[$key] = 'Input missing or incorrect';
+      };
 
     //sent the mail to webmaster
     $mailTo = "pierrelorand1406@gmail.com";
@@ -147,11 +153,17 @@ if (isset($_POST["submit"])) {
                     <option value="technical">Technical</option>
                 </select>
             </div>
+            <?php
+                if ($errors['subject']!= '') echo '<div class="alert-danger">' . $errors['subject'] . '</div>'
+            ?>
             <div class="col-12 col-lg-6 col-sm-6">
                 <label for="option">option</label>
                 <select name="option" id="option">
                     <option value="option" selected>Select option</option>
                 </select>
+                <?php
+                if ($errors['option']!= '') echo '<div class="alert-danger">' . $errors['option'] . '</div>'
+                ?>
             </div>
         </div>
         <div class="form-row">
