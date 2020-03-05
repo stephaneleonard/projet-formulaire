@@ -7,11 +7,29 @@ $errors = [
     "country" => '',
     "description" => '',
     "sex" => '',
-    "subject" =>'',
+    "subject" => '',
     "option" => ''
 ];
 $result = array();
 $mailform = '';
+function honeypot_validade($req)
+{
+
+    if (!empty($req)) {
+
+        $honeypot_fields = [
+            "name",
+        ];
+
+        foreach ($honeypot_fields as $field) {
+            if (isset($req[$field]) && !empty($req[$field])) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
 //method to check wether you have to keep data in there input fields or not
 function keepOrNotKeep($name, $r)
 {
@@ -24,57 +42,65 @@ function keepOrNotKeep($name, $r)
 
 
 if (isset($_POST["submit"])) {
+    echo $_POST['name'];
+    if (honeypot_validade($_POST)) {
 
-    //table of all the sanitize method needed for each input
-    $options = [
-        "firstname" => FILTER_SANITIZE_STRING,
-        "lastname" => FILTER_SANITIZE_STRING,
-        "email" => FILTER_VALIDATE_EMAIL,
-        "country" => FILTER_SANITIZE_STRING,
-        "description" => FILTER_SANITIZE_STRING,
-        "sex" => FILTER_SANITIZE_STRING,
-        "subject" => FILTER_SANITIZE_STRING,
-        "option" => FILTER_SANITIZE_STRING
-    ];
-    // sanatization
-    $result = filter_input_array(INPUT_POST, $options);
-    var_dump($result);
+        //table of all the sanitize method needed for each input
+        $options = [
+            "firstname" => FILTER_SANITIZE_STRING,
+            "lastname" => FILTER_SANITIZE_STRING,
+            "email" => FILTER_VALIDATE_EMAIL,
+            "country" => FILTER_SANITIZE_STRING,
+            "description" => FILTER_SANITIZE_STRING,
+            "sex" => FILTER_SANITIZE_STRING,
+            "subject" => FILTER_SANITIZE_STRING,
+            "option" => FILTER_SANITIZE_STRING
+        ];
+        // sanatization
+        $result = filter_input_array(INPUT_POST, $options);
 
-    // check if the inputs exist and if not put the error message at the right place
-    foreach ($result as $key => $value) {
-        if (empty($value)) $errors[$key] = 'Input missing or incorrect';
+        // check if the inputs exist and if not put the error message at the right place
+        foreach ($result as $key => $value) {
+            if (empty($value)) $errors[$key] = 'Input missing or incorrect';
+        }
+        //make sure that customer to not try to change the input
+        if ($result["sex"] != "M" && $result["sex"] != "F") {
+            $errors["sex"] = 'Input missing or incorrect';
+        };
+
+        if ($result["subject"] != "payement" && $result["subject"] != "technical" && $result["subject"] != "delivery" && $result["subject"] != "autre") {
+            $errors["subject"] = 'Input missing or incorrect';
+        }
+        if ($result["option"] != "option") {
+            $errors["option"] = 'Input missing or incorrect';
+        };
+
+
+        //sent the mail to webmaster only if no errors
+        if (!in_array('Input missing or incorrect', $errors)) {
+            $mailTo = "pierrelorand1406@gmail.com";
+            $person = $result["firstname"] . " " . $result["lastname"];
+            $mailFrom = "Contact request from " . $person . "(" . $result["country"] . ")";
+            $body = "<h2> contact request </h2>
+            <h4>name</h4><p>" . $person . "</p>
+            <h4>email</h4><p>" . $result["email"] . "</p>
+            <h4>subject</h4><p>" . $result["subject"] . "</p>
+            <h4>message</h4><p>" . $result["description"] . "</p>";
+
+            //email headers
+            $headers = "MIME-Version: 1.0:" . "\r\n";
+            $headers .= "Content-Type: text/html;charset=UTF-8" . "\r\n";
+
+            //additionnal headers
+            $headers .= "From: " . $person . "<" . $result["email"] . ">" . "\r\n";
+
+            mail($mailTo, $mailFrom, $body, $headers);
+        } else {
+            echo '<p>mail pas envoyé</p>';
+        }
+    } else {
+        echo '<p>Coucou Odile</p>';
     }
-    //make sure that customer to not try to change the input
-    if($result["sex"]!="M" && $result["sex"]!="F" ){
-      $errors["sex"] = 'Input missing or incorrect';
-    };
-
-    if($result["subject"]!="Payement" && $result["subject"]!="Technical" && $result["subject"]!="Delivery" && $result["subject"]!="Autre"){
-        $errors["subject"] = 'Input missing or incorrect';
-    }
-    if($result["option"]!="option" && $result["option"]!="bill" ){
-        $errors["option"] = 'Input missing or incorrect';
-      };
-
-    //sent the mail to webmaster
-    $mailTo = "pierrelorand1406@gmail.com";
-    $person = $result["firstname"]." ". $result["lastname"];
-    $mailFrom = "Contact request from ".$person."(".$result["country"].")";
-    $body = "<h2> contact request </h2>
-            <h4>name</h4><p>".$person."</p>
-            <h4>email</h4><p>".$result["email"]."</p>
-            <h4>subject</h4><p>".$result["subject"]."</p>
-            <h4>message</h4><p>".$result["description"]."</p>";
-
-    //email headers
-    $headers = "MIME-Version: 1.0:"."\r\n";
-    $headers .= "Content-Type: text/html;charset=UTF-8"."\r\n";
-
-    //additionnal headers
-    $headers .= "From: ". $person. "<". $result["email"]. ">". "\r\n";
-
-    mail($mailTo,$mailFrom,$body,$headers);
-
 }
 ?>
 <main>
@@ -155,14 +181,17 @@ if (isset($_POST["submit"])) {
                 </select>
             </div>
             <?php
-              //  if ($errors['subject']!= '') echo '<div class="alert-danger">' . $errors['subject'] . '</div>'
+            if ($errors['subject'] != '') echo '<div class="alert-danger">' . $errors['subject'] . '</div>'
             ?>
             <div class="col-12 col-lg-6 col-sm-6">
                 <label for="option">option</label>
-                <select name="option" id="option">
+                <select name='option' id="option">
                     <option value="option" selected>Select option</option>
                     <option value ="bill">bill</select>
                 </select>
+                <?php
+                if ($errors['option'] != '') echo '<div class="alert-danger">' . $errors['option'] . '</div>'
+                ?>
             </div>
         </div>
         <div class="form-row">
@@ -174,6 +203,8 @@ if (isset($_POST["submit"])) {
                 ?>
             </div>
         </div>
+        <label class="ohnohoney" for="name"></label>
+        <input class="ohnohoney" autocomplete="false" autofill='off' type="text" id="name" name="name" placeholder="Your name here" value=''>
         <button id="run" class="btn btn-primary mt-3" type="submit" name="submit">Submit form</button>
     </form>
 
