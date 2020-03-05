@@ -158,8 +158,8 @@ if (isset($_POST["submit"])) {
             ?>
             <div class="col-12 col-lg-6 col-sm-6">
                 <label for="option">option</label>
-                <select name="option" id="option">
-                    <option value="option" selected>Select option</option>
+                <select id="option">
+                    <option  name="option" value="option" selected>Select option</option>
                 </select>
                 <?php
                 if ($errors['option']!= '') echo '<div class="alert-danger">' . $errors['option'] . '</div>'
