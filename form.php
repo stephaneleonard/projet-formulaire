@@ -1,14 +1,26 @@
 <?php
 // table of all the errors message
 $errors = [
-  "firstname" => '',
-  "lastname" => '',
-  "email" => '',
-  "country" => '',
-  "description" => '',
-  "sex" =>''
+    "firstname" => '',
+    "lastname" => '',
+    "email" => '',
+    "country" => '',
+    "description" => '',
+    "sex" => ''
 ];
+$result = array();
 $mailform = '';
+//method to check wether you have to keep data in there input fields or not
+function keepOrNotKeep($name, $r)
+{
+    if (isset($_POST[$name])) {
+        if (in_array('', $r)) {
+            return true;
+        } else return false;
+    } else return false;
+}
+
+
 if (isset($_POST["submit"])) {
 
     //table of all the sanitize method needed for each input
@@ -27,13 +39,13 @@ if (isset($_POST["submit"])) {
     foreach ($result as $key => $value) {
         if (empty($value)) $errors[$key] = 'Input missing or incorrect';
     }
-    if($result["sex"]!="M" && $result["sex"]!="F" ){
-      $errors[$key] = 'Input missing or incorrect';
+    if ($result["sex"] != "M" && $result["sex"] != "F") {
+        $errors[$key] = 'Input missing or incorrect';
     }
-    foreach ($result as $key => $value){
+    foreach ($result as $key => $value) {
         $mailform .= "$value, ";
     }
-    mail("pierrelorand1406@gmail.com","testMail",$mailform);
+    mail("pierrelorand1406@gmail.com", "testMail", $mailform);
 }
 ?>
 <main>
@@ -53,14 +65,14 @@ if (isset($_POST["submit"])) {
         <div class="form-row">
             <div class="col-md-4 mb-3">
                 <label for="firstname">First name</label>
-                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First name" required value=<?php echo isset($_POST['firstname']) ? $_POST['firstname'] : ''; ?>>
+                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First name" required value="<?php echo keepOrNotKeep('firstname', $result) ? $_POST['firstname'] : ''; ?>">
                 <?php
-                  if ($errors['firstname'] != '') echo '<div class="alert-danger">' . $errors['firstname'] . '</div>'
+                if ($errors['firstname'] != '') echo '<div class="alert-danger">' . $errors['firstname'] . '</div>'
                 ?>
             </div>
             <div class="col-md-4 mb-3">
                 <label for="lastname">Last name</label>
-                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Last name" required value=<?php echo isset($_POST['lastname']) ? $_POST['lastname'] : ''; ?>>
+                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Last name" required value="<?php echo keepOrNotKeep('lastname', $result) ? $_POST['lastname'] : ''; ?>">
                 <?php
                 if ($errors['lastname'] != '') echo '<div class="alert-danger">' . $errors['lastname'] . '</div>'
                 ?>
@@ -71,7 +83,7 @@ if (isset($_POST["submit"])) {
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
                     </div>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="email@gmail.com" required aria-describedby="validationTooltipUsernamePrepend" value=<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="email@gmail.com" required aria-describedby="validationTooltipUsernamePrepend" value="<?php echo keepOrNotKeep('email', $result) ? $_POST['email'] : ''; ?>">
                 </div>
                 <?php
                 if ($errors['email'] != '') echo '<div class="alert-danger">' . $errors['email'] . '</div>'
@@ -81,7 +93,7 @@ if (isset($_POST["submit"])) {
         <div class="form-row">
             <div class="col-md-6 mb-3">
                 <label for="country">Country</label>
-                <input type="text" class="form-control" name="country" id="country"  required placeholder="Country" value=<?php echo isset($_POST['country']) ? $_POST['country'] : ''; ?>>
+                <input type="text" class="form-control" name="country" id="country" required placeholder="Country" value="<?php echo keepOrNotKeep('country', $result) ? $_POST['country'] : ''; ?>">
                 <?php
                 if ($errors['country'] != '') echo '<div class="alert-danger">' . $errors['country'] . '</div>'
                 ?>
@@ -123,7 +135,7 @@ if (isset($_POST["submit"])) {
         <div class="form-row">
             <div class="col-12 ">
                 <label class="mt-2" for="description">description</label>
-                <textarea class="form-control" name="description" id="description" rows="10" placeholder="describe the problem" required><?php echo isset($_POST['description']) ? $_POST['description'] : ''; ?></textarea>
+                <textarea class="form-control" name="description" id="description" rows="10" placeholder="describe the problem" required><?php echo keepOrNotKeep('description', $result) ? $_POST['description'] : ''; ?></textarea>
                 <?php
                 if ($errors['description'] != '') echo '<div class="alert-danger">' . $errors['description'] . '</div>'
                 ?>
