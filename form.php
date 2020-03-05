@@ -38,6 +38,7 @@ if (isset($_POST["submit"])) {
     ];
     // sanatization
     $result = filter_input_array(INPUT_POST, $options);
+    var_dump($result);
 
     // check if the inputs exist and if not put the error message at the right place
     foreach ($result as $key => $value) {
@@ -51,7 +52,7 @@ if (isset($_POST["submit"])) {
     if($result["subject"]!="Payement" && $result["subject"]!="Technical" && $result["subject"]!="Delivery" && $result["subject"]!="Autre"){
         $errors[$key] = 'Input missing or incorrect';
     }
-    if($result["option"] !="option" ){
+    if($result["option"]!="option" && $result["option"]!="bill" ){
         $errors[$key] = 'Input missing or incorrect';
       };
 
@@ -158,12 +159,10 @@ if (isset($_POST["submit"])) {
             ?>
             <div class="col-12 col-lg-6 col-sm-6">
                 <label for="option">option</label>
-                <select id="option">
-                    <option  name="option" value="option" selected>Select option</option>
+                <select name="option" id="option">
+                    <option value="option" selected>Select option</option>
+                    <option value ="bill">bill</select>
                 </select>
-                <?php
-                if ($errors['option']!= '') echo '<div class="alert-danger">' . $errors['option'] . '</div>'
-                ?>
             </div>
         </div>
         <div class="form-row">
