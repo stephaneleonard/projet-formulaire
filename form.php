@@ -46,14 +46,14 @@ if (isset($_POST["submit"])) {
     }
     //make sure that customer to not try to change the input
     if($result["sex"]!="M" && $result["sex"]!="F" ){
-      $errors[$key] = 'Input missing or incorrect';
+      $errors["sex"] = 'Input missing or incorrect';
     };
 
     if($result["subject"]!="Payement" && $result["subject"]!="Technical" && $result["subject"]!="Delivery" && $result["subject"]!="Autre"){
-        $errors[$key] = 'Input missing or incorrect';
+        $errors["subject"] = 'Input missing or incorrect';
     }
     if($result["option"]!="option" && $result["option"]!="bill" ){
-        $errors[$key] = 'Input missing or incorrect';
+        $errors["option"] = 'Input missing or incorrect';
       };
 
     //sent the mail to webmaster
@@ -155,7 +155,7 @@ if (isset($_POST["submit"])) {
                 </select>
             </div>
             <?php
-                if ($errors['subject']!= '') echo '<div class="alert-danger">' . $errors['subject'] . '</div>'
+              //  if ($errors['subject']!= '') echo '<div class="alert-danger">' . $errors['subject'] . '</div>'
             ?>
             <div class="col-12 col-lg-6 col-sm-6">
                 <label for="option">option</label>
