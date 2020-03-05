@@ -19,6 +19,7 @@ if (isset($_POST["submit"])) {
         "country" => FILTER_SANITIZE_STRING,
         "description" => FILTER_SANITIZE_STRING,
         "sex" => FILTER_SANITIZE_STRING,
+        "subject" => FILTER_SANITIZE_STRING,
     ];
     // sanatization
     $result = filter_input_array(INPUT_POST, $options);
@@ -27,13 +28,34 @@ if (isset($_POST["submit"])) {
     foreach ($result as $key => $value) {
         if (empty($value)) $errors[$key] = 'Input missing or incorrect';
     }
+    //make sure that customer to not try to change the input
     if($result["sex"]!="M" && $result["sex"]!="F" ){
       $errors[$key] = 'Input missing or incorrect';
+    };
+
+    if($result["subject"]!="Payement" && $result["subject"]!="Technical" && $result["subject"]!="Delivery" && $result["subject"]!="Autre"){
+        $errors[$key] = 'Input missing or incorrect';
     }
-    foreach ($result as $key => $value){
-        $mailform .= "$value, ";
-    }
-    mail("pierrelorand1406@gmail.com","testMail",$mailform);
+
+    //sent the mail to webmaster
+    $mailTo = "pierrelorand1406@gmail.com";
+    $person = $result["firstname"]." ". $result["lastname"];
+    $mailFrom = "Contact request from ".$person."(".$result["country"].")";
+    $body = "<h2> contact request </h2>
+            <h4>name</h4><p>".$person."</p>
+            <h4>email</h4><p>".$result["email"]."</p>
+            <h4>subject</h4><p>".$result["subject"]."</p>
+            <h4>message</h4><p>".$result["description"]."</p>";
+
+    //email headers
+    $headers = "MIME-Version: 1.0:"."\r\n";
+    $headers .= "Content-Type: text/html;charset=UTF-8"."\r\n";
+
+    //additionnal headers
+    $headers .= "From: ". $person. "<". $result["email"]. ">". "\r\n";
+
+    mail($mailTo,$mailFrom,$body,$headers);
+
 }
 ?>
 <main>
