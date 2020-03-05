@@ -6,7 +6,7 @@
 //    function messageError(name){
 //        document.getElementById(name).setAttribute('placeholder',`${name} is required`);
 //    }
-  
+
 //    document.getElementById('run').addEventListener('click',()=>{
 //     let firstname = takeInputValue('firstname');
 //     let lastname = takeInputValue('lastname');
@@ -22,5 +22,8 @@
 //     })
 //    })
 
-
 // })()
+
+// window.onload = function() {
+//   document.getElementById("name").setAttribute("autocomplete", "off");
+// };
