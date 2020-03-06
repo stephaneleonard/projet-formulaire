@@ -7,11 +7,11 @@ $errors = [
     "country" => '',
     "description" => '',
     "sex" => '',
-    "subject" => '',
-    "option" => ''
+    "subject" => ''
 ];
 $result = array();
 $mailform = '';
+$send = false;
 function honeypot_validade($req)
 {
 
@@ -53,7 +53,6 @@ if (isset($_POST["submit"])) {
             "description" => FILTER_SANITIZE_STRING,
             "sex" => FILTER_SANITIZE_STRING,
             "subject" => FILTER_SANITIZE_STRING,
-            "option" => FILTER_SANITIZE_STRING
         ];
         // sanatization
         $result = filter_input_array(INPUT_POST, $options);
@@ -81,9 +80,6 @@ if (isset($_POST["submit"])) {
         if ($result["subject"] != "payement" && $result["subject"] != "technical" && $result["subject"] != "delivery" && $result["subject"] != "autre") {
             $errors["subject"] = 'Input missing or incorrect';
         }
-        if ($result["option"] != "option") {
-            $errors["option"] = 'Input missing or incorrect';
-        };
 
         print_r($errors);
 
@@ -106,9 +102,10 @@ if (isset($_POST["submit"])) {
             //additionnal headers
             $headers .= "From: " . $person . "<" . $result["email"] . ">" . "\r\n";
 
-            mail($mailTo, $mailFrom, $body, $headers);
+            $send = mail($mailTo, $mailFrom, $body, $headers);
         } else {
             echo '<p>mail pas envoyé</p>';
+            $send = false;
         }
     } else {
         echo '<p>Coucou Odile</p>';
@@ -126,6 +123,7 @@ if (isset($_POST["submit"])) {
         <div class="row">
             <div class="col-12 text-right">
                 <h4>All problems can be fixed</h4>
+                <?php if(isset($_POST["name"]))echo $send ? '<div class = "col-12 text-center">your mail has been sent</div>':  '<div class= "col-12 text-center">your mail has not been sent</div>'; ?>
                 <hr>
             </div>
         </div>
@@ -183,7 +181,7 @@ if (isset($_POST["submit"])) {
             </div>
         </div>
         <div class="form-row">
-            <div class="col-12 col-lg-6 col-sm-6">
+            <div class="col-12 col-lg-6 col-sm-6 mt-4">
                 <label for="subject">subject</label>
                 <select name="subject" id="subject">
                     <option value="autre" selected>Autre</option>
@@ -195,15 +193,6 @@ if (isset($_POST["submit"])) {
             <?php
             if ($errors['subject'] != '') echo '<div class="alert-danger">' . $errors['subject'] . '</div>'
             ?>
-            <div class="col-12 col-lg-6 col-sm-6">
-                <label for="option">option</label>
-                <select name='option' id="option">
-                    <option value="option" selected>Select option</option>
-                </select>
-                <?php
-                if ($errors['option'] != '') echo '<div class="alert-danger">' . $errors['option'] . '</div>'
-                ?>
-            </div>
         </div>
         <div class="form-row">
             <div class="col-12 ">
@@ -218,6 +207,4 @@ if (isset($_POST["submit"])) {
         <input class="ohnohoney" autocomplete="false" autofill='off' type="text" id="name" name="name" placeholder="Your name here" value=''>
         <button id="run" class="btn btn-primary mt-3" type="submit" name="submit">Submit form</button>
     </form>
-
-    <script src="./assets/js/script.js"></script>
 </main>

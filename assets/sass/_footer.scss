@@ -1,6 +1,29 @@
+@font-face{
+    font-family: "Bellota";
+    src: url("/assets/font/Bellota-Regular.otf") format("truetype");
+}
 footer{
     background-color: #15c5bd;
     i{
         font-size: 200%;
+    }
+    font-family: "Bellota";
+    a{
+        color: #303030;
+    }
+
+    a:hover{
+        color:white;
+    }
+    #buttonTop{
+        position: fixed;
+        right: 1%;
+        bottom: 1%;
+        background-color: #303030;
+        color: #15c5bd;
+        border-color: black;
+    }
+    .hidden{
+        visibility: hidden;
     }
 }
