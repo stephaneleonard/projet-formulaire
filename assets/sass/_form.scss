@@ -1,7 +1,11 @@
 $back-color: #303030;
 $colorText: #15c5bd;
-
+@font-face{
+  font-family: "Bellota";
+  src: url("/assets/font/Bellota-Regular.otf") format("truetype");
+}
 form {
+  font-family: "Bellota";
   background-color: $back-color;
   color: $colorText;
   border-radius: 35px;
