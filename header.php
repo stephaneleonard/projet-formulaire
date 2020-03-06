@@ -27,7 +27,7 @@
                     </li>
                 </ul>
                 <a class="nav navbar-nav navbar-right">
-                    <i class="fas fa-shopping-cart"></i>
+                    <em class="fas fa-shopping-cart"></em>
                 </a>
 
             </div>

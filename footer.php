@@ -8,27 +8,27 @@
         <ul class="list-unstyled list-inline text-center">
             <li class="list-inline-item">
                 <a href="#" class="btn-floating btn-fb mx-1">
-                    <i class="fab fa-facebook-f"> </i>
+                    <em class="fab fa-facebook-f"> </em>
                 </a>
             </li>
             <li class="list-inline-item">
                 <a href="#" class="btn-floating btn-tw mx-1">
-                    <i class="fab fa-twitter"> </i>
+                    <em class="fab fa-twitter"> </em>
                 </a>
             </li>
             <li class="list-inline-item">
                 <a href="#" class="btn-floating btn-gplus mx-1">
-                    <i class="fab fa-google-plus-g"> </i>
+                    <em class="fab fa-google-plus-g"> </em>
                 </a>
             </li>
             <li class="list-inline-item">
                 <a href="#" class="btn-floating btn-youtube mx-1">
-                    <i class="fab fa-youtube"> </i>
+                    <em class="fab fa-youtube"> </em>
                 </a>
             </li>
             <li class="list-inline-item">
                 <a href="#" class="btn-floating btn-insta mx-1">
-                    <i class="fab fa-instagram"> </i>
+                    <em class="fab fa-instagram"> </em>
                 </a>
             </li>
         </ul>
