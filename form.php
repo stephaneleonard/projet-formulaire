@@ -85,7 +85,7 @@ if (isset($_POST["submit"])) {
 
         if ($result[SEX] != "M" && $result[SEX] != "F") {
             $errors[SEX] = ERROR_MSG;
-        };
+        }
 
         if ($result[SUBJECT] != "payement" && $result[SUBJECT] != "technical" && $result[SUBJECT] != "delivery" && $result[SUBJECT] != "autre") {
             $errors[SUBJECT] = ERROR_MSG;
