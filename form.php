@@ -215,7 +215,7 @@ if (isset($_POST["submit"])) {
             </div>
         </div>
         <label class="ohnohoney" for="name"></label>
-        <input class="ohnohoney" autocomplete="false" autofill='off' type="text" id="name" name="name" placeholder="Your name here" value=''>
+        <input class="ohnohoney" aria-hidden='true' autocomplete="off" type="text" id="name" name="name" placeholder="Your name here" value=''>
         <button id="run" class="btn btn-primary mt-3" type="submit" name="submit">Submit form</button>
     </form>
 
