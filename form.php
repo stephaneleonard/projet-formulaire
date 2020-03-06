@@ -34,7 +34,7 @@ function honeypot_validade($req)
 function keepOrNotKeep($name, $r)
 {
     if (isset($_POST[$name])) {
-        if (in_array('Input missing or incorrect', $r)) {
+        if (in_array('Input missing or incorrect', $r , true)) {
             return true;
         } else return false;
     } else return false;
@@ -85,7 +85,7 @@ if (isset($_POST["submit"])) {
 
 
         //sent the mail to webmaster only if no errors
-        if (!in_array('Input missing or incorrect', $errors)) {
+        if (!in_array('Input missing or incorrect', $errors , true)) {
             $mailTo = "pierrelorand1406@gmail.com";
             $person = $result["firstname"] . " " . $result["lastname"];
             $mailFrom = "Contact request from " . $person . "(" . $result["country"] . ")";
