@@ -1,29 +1,22 @@
-// (()=>{
-//    /*script for the footer*/
-//    function takeInputValue(name){
-//        return document.getElementById(name).value;
-//    }
-//    function messageError(name){
-//        document.getElementById(name).setAttribute('placeholder',`${name} is required`);
-//    }
+(()=>{
 
-//    document.getElementById('run').addEventListener('click',()=>{
-//     let firstname = takeInputValue('firstname');
-//     let lastname = takeInputValue('lastname');
-//     let email = takeInputValue('email');
-//     let country = takeInputValue('country');
-//     const TABLEFORM = [firstname,lastname,email,country];
-//     console.table(TABLEFORM);
-//     TABLEFORM.forEach(e=>{
-//         console.log(e)
-//         if(!e){
-//             messageError(e);
-//         }
-//     })
-//    })
+    /*script button*/
+    function scroll(id){
+        document.getElementById(id).addEventListener('click',()=>{
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+              });
+        })
+    }
+    window.onscroll = function(){
+    if(document.body.scrollTop > 50 || document.documentElement.scrollTop>50){
+        document.getElementById('buttonTop').classList.remove('hidden');
+    }
+    else{
+        document.getElementById('buttonTop').classList.add('hidden');
+    }
+    }
+    scroll('buttonTop');
 
-// })()
-
-// window.onload = function() {
-//   document.getElementById("name").setAttribute("autocomplete", "off");
-// };
+})()
