@@ -34,8 +34,8 @@
                         <a class="nav-link" href="?page=Form">Contact Us <span class="sr-only">()</span></a>
                     </li>
                 </ul>
-                <a class="nav navbar-nav navbar-right">
-                    <em class="fas fa-shopping-cart"></em>
+                <a href = "#" class="nav navbar-nav navbar-right">
+                    <em id="basketShop" class="fas fa-shopping-cart"></em>
                 </a>
 
             </div>
