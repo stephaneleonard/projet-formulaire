@@ -23,8 +23,8 @@
     /*script basket*/
     function animationShop(){
         const TABINDEX = [];
-        buttonClass = document.getElementsByClassName('btn-primary');
-        tabClass = Array.from(buttonClass);
+        const buttonClass = document.getElementsByClassName('btn-primary');
+        const tabClass = Array.from(buttonClass);
 
         tabClass.forEach((e,index) => {
             e.id = `btn-${index}`;
@@ -32,8 +32,8 @@
         });
 
         return TABINDEX;
-};
-    tableauShop = animationShop();
+}
+    const tableauShop = animationShop();
 
     function animationLogo(tableauShopping){
         console.log(basketShop);
