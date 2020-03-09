@@ -19,4 +19,32 @@
     }
     scroll('buttonTop');
 
+
+    /*script basket*/
+    function animationShop(){
+        const TABINDEX = [];
+        buttonClass = document.getElementsByClassName('btn-primary');
+        tabClass = Array.from(buttonClass);
+
+        tabClass.forEach((e,index) => {
+            e.id = `btn-${index}`;
+            TABINDEX.push(index);
+        });
+
+        return TABINDEX;
+};
+    tableauShop = animationShop();
+
+    function animationLogo(tableauShopping){
+        console.log(basketShop);
+        tableauShopping.forEach(tab=>{
+            document.getElementById(`btn-${tab}`).addEventListener('click',()=>{
+                document.getElementById('basketShop').removeAttribute('class');
+                document.getElementById('basketShop').setAttribute('class','fas fa-cart-plus')
+            })
+        })
+    }
+    animationLogo(tableauShop);
+
+
 })()
