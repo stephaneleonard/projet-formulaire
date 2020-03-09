@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Hackers Poulette</title>
+    <title>Hackers Poulettes</title>
 </head>
 
 <body>
@@ -19,10 +19,18 @@
             <img class="navbar-brand" src="./assets/img/hackers-poulette-logo.png" alt="Hackers Poulette logo">
             <div class="collapse navbar-collapse" id="navbarsExample05">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item <?php
+                                        if (!isset($_GET['page']) || $_GET['page'] == 'Shop') {
+                                            echo 'active';
+                                        }
+                                        ?>">
                         <a class="nav-link" href="?page=Shop">Shop <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item <?php
+                                        if (isset($_GET['page']) &&  $_GET['page'] == 'Form') {
+                                            echo 'active';
+                                        }
+                                        ?>">
                         <a class="nav-link" href="?page=Form">Contact Us <span class="sr-only">()</span></a>
                     </li>
                 </ul>
