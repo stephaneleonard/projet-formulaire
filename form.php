@@ -48,6 +48,13 @@ function keepOrNotKeep($name, $r)
     }
 }
 
+function displayError($target, $r)
+{
+    if ($r[$target] != '') {
+        echo $r[$target];
+    }
+}
+
 
 if (isset($_POST["submit"])) {
     if (honeypot_validade($_POST)) {
@@ -145,9 +152,7 @@ if (isset($_POST["submit"])) {
                 <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First name" required value="<?php echo keepOrNotKeep(FIRSTNAME, $errors) ? $_POST[FIRSTNAME] : ''; ?>">
                 <div class="alert-danger">
                     <?php
-                    if ($errors[FIRSTNAME] != '') {
-                        echo $errors[FIRSTNAME];
-                    }
+                    displayError(FIRSTNAME, $errors);
                     ?>
                 </div>
             </div>
@@ -156,9 +161,7 @@ if (isset($_POST["submit"])) {
                 <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Last name" required value="<?php echo keepOrNotKeep(LASTNAME, $errors) ? $_POST[LASTNAME] : ''; ?>">
                 <div class="alert-danger">
                     <?php
-                    if ($errors[LASTNAME] != '') {
-                        echo $errors[LASTNAME];
-                    }
+                    displayError(LASTNAME, $errors);
                     ?>
                 </div>
             </div>
@@ -172,9 +175,7 @@ if (isset($_POST["submit"])) {
                 </div>
                 <div class="alert-danger">
                     <?php
-                    if ($errors[EMAIL] != '') {
-                        echo $errors[EMAIL];
-                    }
+                    displayError(EMAIL, $errors);
                     ?>
                 </div>
             </div>
@@ -185,9 +186,7 @@ if (isset($_POST["submit"])) {
                 <input type="text" class="form-control" name="country" id="country" required placeholder="Country" value="<?php echo keepOrNotKeep(COUNTRY, $errors) ? $_POST[COUNTRY] : ''; ?>">
                 <div class="alert-danger">
                     <?php
-                    if ($errors[COUNTRY] != '') {
-                        echo $errors[COUNTRY];
-                    }
+                    displayError(COUNTRY, $errors);
                     ?>
                 </div>
             </div>
@@ -205,9 +204,7 @@ if (isset($_POST["submit"])) {
                 </div>
                 <div class="alert-danger">
                     <?php
-                    if ($errors[SEX] != '') {
-                        echo $errors[SEX];
-                    }
+                    displayError(SEX, $errors);
                     ?>
                 </div>
             </div>
@@ -223,9 +220,7 @@ if (isset($_POST["submit"])) {
                 </select>
             </div>
             <?php
-            if ($errors[SUBJECT] != '') {
-                echo '<div class="alert-danger">' . $errors[SUBJECT] . '</div>';
-            }
+            displayError(SUBJECT, $errors);
             ?>
         </div>
         <div class="form-row">
@@ -233,9 +228,7 @@ if (isset($_POST["submit"])) {
                 <label class="mt-2" for="description">description</label>
                 <textarea class="form-control" name="description" id="description" rows="10" placeholder="describe the problem" required><?php echo keepOrNotKeep(DESCRIPTION, $errors) ? $_POST[DESCRIPTION] : ''; ?></textarea>
                 <?php
-                if ($errors[DESCRIPTION] != '') {
-                    echo '<div class="alert-danger">' . $errors[DESCRIPTION] . '</div>';
-                }
+                displayError(DESCRIPTION, $errors);
                 ?>
             </div>
         </div>

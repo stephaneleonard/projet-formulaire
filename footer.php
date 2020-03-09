@@ -40,7 +40,7 @@
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">© 2020 Copyright:
         <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
-        <button id="buttonTop" class="rounded-circle hidden"><i class="fas fa-arrow-up fa-1x"></i></button>
+        <button id="buttonTop" class="rounded-circle hidden"><em class="fas fa-arrow-up fa-1x"></em></button>
     </div>
     <!-- Copyright -->
 
