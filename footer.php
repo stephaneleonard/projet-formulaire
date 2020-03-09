@@ -7,27 +7,27 @@
         <!-- Social buttons -->
         <ul class="list-unstyled list-inline text-center">
             <li class="list-inline-item">
-                <a href="#" class="btn-floating btn-fb mx-1">
+                <a href="#" aria-label="facebook" class="btn-floating btn-fb mx-1">
                     <em class="fab fa-facebook-f"> </em>
                 </a>
             </li>
             <li class="list-inline-item">
-                <a href="#" class="btn-floating btn-tw mx-1">
+                <a href="#" aria-label="twitter" class="btn-floating btn-tw mx-1">
                     <em class="fab fa-twitter"> </em>
                 </a>
             </li>
             <li class="list-inline-item">
-                <a href="#" class="btn-floating btn-gplus mx-1">
+                <a href="#" aria-label="google plus" class="btn-floating btn-gplus mx-1">
                     <em class="fab fa-google-plus-g"> </em>
                 </a>
             </li>
             <li class="list-inline-item">
-                <a href="#" class="btn-floating btn-youtube mx-1">
+                <a href="#" aria-label="youtube" class="btn-floating btn-youtube mx-1">
                     <em class="fab fa-youtube"> </em>
                 </a>
             </li>
             <li class="list-inline-item">
-                <a href="#" class="btn-floating btn-insta mx-1">
+                <a href="#" aria-label="instagram" class="btn-floating btn-insta mx-1">
                     <em class="fab fa-instagram"> </em>
                 </a>
             </li>
